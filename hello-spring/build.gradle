@@ -9,10 +9,12 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
+	//dependencies 라이브러리 다운 받는 곳 명시
 	mavenCentral()
 }
 
 dependencies {
+	//해당 스프링 부트에 설치된 라이브러리 목록
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
