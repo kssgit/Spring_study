@@ -1,9 +1,12 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+/*Spring 컨테이너에서 관리하도록 등록*/
+//@Repository
 public class MemoryMemberRepository implements MemberRepository{
     private static Map<Long , Member> store = new HashMap<>();
     private static long sequence = 0L;

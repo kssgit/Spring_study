@@ -19,6 +19,8 @@ class MemberServiceTest {
     //각 테스트 실행하기 전에 실행 되는 매서드
     @BeforeEach
     public void beforEach(){
+        // 스프링 DI(Dependency Injection)
+        // 지금은 MemoryMemberRepository의 Store가 Static이기 때문에 New를 통해 새로 생성 해도 되지만 Static이 아닐 경우도 생각 해야 한다
         memberRepository = new MemoryMemberRepository();
         memberService = new MemberService(memberRepository);
     }

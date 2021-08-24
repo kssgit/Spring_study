@@ -3,16 +3,26 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 //서비스 로직은 매서드 명이 비즈니스 적이여야 한다
+
+/*Service로 등록을 해두면 Spring 컨테이너에서 관리하기 떄문에
+다른 Controller에서 @Autowired를 통해 사용할 수 있다*/
+//@Service
 public class MemberService {
-    // Test 케이스 쉽게 만드는 법
-    //Ctrl + Shift + T 를 이용하여 test케이스를 바로 만들 수 있다
+    /*Test 케이스 쉽게 만드는 법
+    Ctrl + Shift + T 를 이용하여 test케이스를 바로 만들 수 있다*/
     private final MemberRepository memberRepository ;
 
+    /*스프링 DI(Dependency Injection)의존 관계 주입
+    지금은 MemoryMemberRepository의 Store가 Static이기 때문에 New를 통해 새로 생성 해도 되지만 Static이 아닐 경우도 생각 해야 한다
+    따라서 Constructor 로 MemberRepository를 외부에서 넣어 주도록 해준다 */
+    //@Autowired
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }

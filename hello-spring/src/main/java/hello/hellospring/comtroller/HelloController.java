@@ -15,22 +15,23 @@ public class HelloController {
         return "hello"; // resources/templates/hello.html 실행 시켜라
         // return 은 기본경로로 resources/templates/ 아래에서 찾는다
     }
-
+    //스프링 MVC 방식
     @GetMapping("hello-mvc")
     public String helloMvc(@RequestParam("name") String name , Model model){
         model.addAttribute("name",name);
         return "hello-template";
     }
 
+    //API 방식 (단순 문자열 넘기기)
     @GetMapping("hello-string")
     @ResponseBody // http 바디에 데이터 삽입
     public String helloString(@RequestParam("name") String name){
         return "hello "+name;
     }
 
-//    Json 방식
-//    객체를 넘긴다
-//    객체를 반환할 경우 JsonConverter가 동착해 Json으로 변환 후 넘긴다
+    /*API 방식 ( JSON으로 객체를 변환해서 보낸다)
+    객체를 넘긴다
+    객체를 반환할 경우 JsonConverter가 동착해 Json으로 변환 후 넘긴다*/
     @GetMapping("hello-api")
     @ResponseBody
     public Hello helloApi(@RequestParam("name")String name){
