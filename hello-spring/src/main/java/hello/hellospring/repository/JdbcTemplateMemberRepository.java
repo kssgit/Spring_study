@@ -20,6 +20,8 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     public JdbcTemplateMemberRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
+
     @Override
     public Member save(Member member) {
         SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
@@ -47,7 +49,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
     }
 
 
-    private RowMapper<Member> memberRowMapper() {
+    private RowMapper<Member> memberRowMapper() { // 원하는 형태의 쿼리 결과 객체를 반환 할 수 있게 해준다
         return (rs, rowNum) -> {  // Shift + S 를 이용해서 람다함수로 변경 할 수 있다
             Member member = new Member();
             member.setId(rs.getLong("id"));

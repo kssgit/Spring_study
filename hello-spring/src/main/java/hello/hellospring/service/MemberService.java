@@ -5,6 +5,7 @@ import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import java.util.Optional;
 /*Service로 등록을 해두면 Spring 컨테이너에서 관리하기 떄문에
 다른 Controller에서 @Autowired를 통해 사용할 수 있다*/
 //@Service
+@Transactional
 public class MemberService {
     /*Test 케이스 쉽게 만드는 법
     Ctrl + Shift + T 를 이용하여 test케이스를 바로 만들 수 있다*/
