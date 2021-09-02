@@ -46,6 +46,7 @@ public class MemberService {
         validateDuplicateMember(member); //매서드 추출 하기 Ctrl + Atl + M
 
         memberRepository.save(member);
+        
         return member.getId();
     }
     //전체 회원 조회
