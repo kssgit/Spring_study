@@ -12,7 +12,7 @@ public class OrderServiceTest {
     MemberSerivce memberSerivce = new MemberServiceImpl();
     OrderService orderService = new OrderServiceImpl();
 
-    @Test
+    @Test  // 주문과 할인 정책 test
     void createOrder(){
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);
