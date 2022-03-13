@@ -2,6 +2,7 @@ package hello.core.order;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
@@ -9,7 +10,10 @@ import hello.core.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService{
 
     private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+//    private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 정액 할인
+    // DIP위반 ( 구현체에 의존하기 떄문에 구현체가 바뀌면 new를통해 새로운 구현체를 써줘야한다)
+    // DIP를 위배하지 않으려면 OrderServiceImpl의 코드는 바뀌면 안된다 
+    private final DiscountPolicy discountPolicy = new RateDiscountPolicy();// 정률 할인
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
