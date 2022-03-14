@@ -11,6 +11,7 @@ import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
 
 /**
+ * 구성 영역
  * 애플리케이션에대한 동작에대한 구현객체 생성
  * 생성한 객체 인스턴스의 참조(레퍼런스)는 생성자를 통해서 연결(주입)한다
  * 즉, 의존관계 주입을 해준다 DI
@@ -20,7 +21,7 @@ public class AppConfig {
 
     public MemberService memberService(){ //추상화에만 의존할 수 있도록 구현체를 AppConfig에서 직접 넣어준다
         //즉, 생성자 주입
-        return new MemberServiceImpl(memberRepository());
+        return new MemberServiceImpl(memberRepository());//commant+option+M -> 리팩터링
     }
 
     //역할(Interface)이 드러나도록
@@ -32,7 +33,9 @@ public class AppConfig {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
+    //역할(Interface)이 드러나도록
     public DiscountPolicy discountPolicy(){
-        return new FixDiscountPolicy();
+//        return new FixDiscountPolicy();
+        return new RateDiscountPolicy();
     }
 }
