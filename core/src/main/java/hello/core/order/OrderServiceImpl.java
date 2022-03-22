@@ -7,8 +7,16 @@ import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 
+/**
+ * 클라이언트 영역
+ * 실행하는 책임만 담당
+ * DIP, OCP 준수
+ * 소프트웨어의 요소를 새롭게 확장해도 사용영역의 변경은 닫혀있다
+ */
 public class OrderServiceImpl implements OrderService{
-
+    /**
+     * DIP 추상화(Interface)에만 의존
+     */
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy; // 할인 정책
 //    private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); // 정액 할인
