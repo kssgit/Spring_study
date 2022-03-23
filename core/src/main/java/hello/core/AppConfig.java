@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
 
-    @Bean(name = "memberSerivce")// 이름을 명시적으로 정할 수 있다(Default 매서드 명)
+    @Bean(name = "memberService")// 이름을 명시적으로 정할 수 있다(Default 매서드 명)
     public MemberService memberService(){ //추상화에만 의존할 수 있도록 구현체를 AppConfig에서 직접 넣어준다
         //즉, 생성자 주입
         return new MemberServiceImpl(memberRepository());//commant+option+M -> 리팩터링
