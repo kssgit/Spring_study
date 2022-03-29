@@ -5,6 +5,9 @@ import hello.core.member.MemberService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SingletonTest {
 
@@ -24,7 +27,38 @@ public class SingletonTest {
 
         //두 객체가 다르다는 것을 확인
         //memberService1 != memberSerivce2
-        Assertions.assertThat(memberService1).isNotSameAs(memberService2);
+        assertThat(memberService1).isNotSameAs(memberService2);
     }
 
+
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체 사용")
+    void singletonSerivceTest(){
+        SingletonService singletonSerice1 = SingletonService.getInstance();
+        SingletonService singletonSerice2 = SingletonService.getInstance();
+
+        System.out.println("singletonSerice1 = " + singletonSerice1);
+        System.out.println("singletonSerice2 = " + singletonSerice2);
+
+        //same == 객체 비교
+        //equals  값 비교
+        assertThat(singletonSerice1).isSameAs(singletonSerice2);
+    }
+
+    @Test
+    @DisplayName("싱글톤 컨테이너와 싱글톧")
+    void springContainer(){
+        AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        MemberService memberService1 = ac.getBean("memberService",MemberService.class);
+
+        MemberService memberService2 = ac.getBean("memberService",MemberService.class);
+
+        //참조값이 같은 것을 확인
+        System.out.println("memberService1 = " + memberService1);
+        System.out.println("memberService2 = " + memberService2);
+
+
+        assertThat(memberService1).isSameAs(memberService2);
+    }
 }
