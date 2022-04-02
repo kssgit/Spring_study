@@ -17,4 +17,9 @@ public class MemberServiceImpl implements MemberService{
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
     }
+
+    //싱글톤 확인을위한 매서드
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }

@@ -21,21 +21,38 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class AppConfig {
+    // 어떻게 스프링 bean은 Singleton을 사용해서 할 까?
+    //MemberService -> new MemoryMemberRepository()
+    //OrderService -> new MemoryMemberRepository()
+    //MemberRepository -> new MemoryMemberRepository()
+
+    /*
+    실제로 생성되는 객체 인스턴스
+    모두 1번만 출력된다 
+    call AppConfig.memberService
+    call AppConfig.memberRepository
+    call AppConfig.orderService
+    */
+
+
 
     @Bean(name = "memberService")// 이름을 명시적으로 정할 수 있다(Default 매서드 명)
     public MemberService memberService(){ //추상화에만 의존할 수 있도록 구현체를 AppConfig에서 직접 넣어준다
         //즉, 생성자 주입
+        System.out.println("Call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());//commant+option+M -> 리팩터링
     }
 
     //역할(Interface)이 드러나도록
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("Call AppConfig.memberRepository");
         return new MemoryMemberRepository();
     }
 
     @Bean
     public OrderService orderService(){
+        System.out.println("Call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
