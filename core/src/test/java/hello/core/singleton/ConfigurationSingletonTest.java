@@ -30,4 +30,18 @@ public class ConfigurationSingletonTest {
         assertThat(memberServiceImpl.getMemberRepository()).isSameAs(memberRepository);
         assertThat(orderServiceImpl.getMemberRepository()).isSameAs(memberRepository);
     }
+
+    @Test
+    void configurationDeep(){
+
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        //스프링 컨테이너는 ApplConfig를 상속받은 다른 임이의 클래스를 생성한다
+        //CGLIB라는 바이코드 조작 라이브러리를 사용
+        //만약 @Configuration을 붙이지 않는다면 싱글톤이 깨진
+        //즉, 순수한 자바코드가 실행되어 MemberRepository가 3번 호출된다
+        System.out.println("bean = " + bean.getClass());
+    }
 }

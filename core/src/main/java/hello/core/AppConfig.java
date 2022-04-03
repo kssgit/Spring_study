@@ -28,7 +28,7 @@ public class AppConfig {
 
     /*
     실제로 생성되는 객체 인스턴스
-    모두 1번만 출력된다 
+    모두 1번만 출력된다
     call AppConfig.memberService
     call AppConfig.memberRepository
     call AppConfig.orderService
